@@ -10,4 +10,5 @@
 **Số điện thoại:** 0846103268  
 
 ## 📂 Cấu trúc repository
-Tất cả đều code trên IntelliJ IDEA Community
+Tất cả đều được code trên IntelliJ IDEA Community.
+Với Java Development Kit 17.0.12
