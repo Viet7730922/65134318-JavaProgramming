@@ -10,5 +10,5 @@
 **Số điện thoại:** 0846103268  
 
 ## 📂 Cấu trúc repository
-Tất cả đều được code trên IntelliJ IDEA Community.
-Với Java Development Kit 17.0.12
+Tất cả đều được code trên Eclipse IDE.</br>
+Với Java Development Kit 21.0.5 (https://download.oracle.com/java/21/archive/jdk-21.0.5_windows-x64_bin.exe)
