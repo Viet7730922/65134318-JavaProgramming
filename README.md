@@ -33,18 +33,18 @@ Dự án được thiết kế với tư duy kiến trúc mở, đóng vai trò 
 
 ## 🚀 Tính Năng Cốt Lõi & Đáp Ứng Thang Điểm
 
-### 1. Tối Ưu Hóa Mô Hình Trên Thiết Bị Đầu Cuối (Edge AI - 20%)
+### 1. Tối Ưu Hóa Mô Hình Trên Thiết Bị Đầu Cuối 
 Ứng dụng tích hợp hai phiên bản mô hình để phục vụ bài toán so sánh hiệu năng trong báo cáo kỹ thuật:
 * **Bản gốc (Float32):** Cho độ chính xác cao nhất, dùng làm mốc đối chứng (Baseline).
 * **Bản lượng tử hóa (Quantized INT8):** Áp dụng kỹ thuật *Post-Training Quantization* giúp giảm dung lượng file mô hình xuống ~4 lần, tối ưu tốc độ suy luận (Inference Time) và tiết kiệm RAM/Pin cho thiết bị di động.
 * *Tính năng phụ trợ:* Nút chuyển đổi (Toggle) trực tiếp trên giao diện để đo lường và so sánh FPS, thời gian xử lý giữa 2 phiên bản mô hình.
 
-### 2. Triển Khai Linh Hoạt Theo Tư Duy MLOps (20%)
+### 2. Triển Khai Linh Hoạt Theo Tư Duy MLOps 
 Dịch bệnh cây trồng thay đổi liên tục theo mùa vụ. Thay vì phải biên dịch lại mã nguồn, ứng dụng áp dụng quy trình MLOps thông qua **Firebase ML Custom Model**:
 * **Cơ chế Fallback:** Nhúng sẵn mô hình mặc định trong thư mục `assets` để chạy ngoại tuyến (Offline) ngay khi cài app.
 * **Cập nhật Over-The-Air (OTA):** Tự động kiểm tra và tải ngầm (Background download) phiên bản mô hình mới nhất từ Firebase Console khi có kết nối Internet, giúp cập nhật danh mục nhận diện bệnh mới một cách xuyên suốt.
 
-### 3. Kỹ Thuật Xử Lý Ảnh Thời Gian Thực & Lưu Trữ (30%)
+### 3. Kỹ Thuật Xử Lý Ảnh Thời Gian Thực & Lưu Trữ 
 * **CameraX Real-time Scanning:** Sử dụng Use Case `ImageAnalysis` của Jetpack CameraX để trích xuất luồng hình ảnh trực tiếp. Áp dụng kỹ thuật điều tiết khung hình (Inference Throttling - chạy 3-5 frame/giây) để chống quá nhiệt và giật lag.
 * **Cơ sở dữ liệu kép (Local & Cloud):**
     * **Room Database:** Lưu trữ dữ liệu cấu hình cục bộ, hiển thị phác đồ và cách chữa trị bệnh ngay lập tức kể cả khi không có mạng.
