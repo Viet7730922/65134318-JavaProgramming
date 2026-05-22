@@ -37,8 +37,7 @@ Với Java Development Kit 21.0.5 (https://download.oracle.com/java/21/archive/j
   <img src="https://img.shields.io/badge/License-MIT-purple.svg?style=for-the-badge" alt="License">
 </p>
 
-**Smart Crop Doctor** là ứng dụng di động chạy trên nền tảng Android, sử dụng Trí tuệ nhân tạo (AI) để phân tích hình ảnh và chẩn đoán các loại sâu bệnh trên lá cây (đốm lá, rỉ sắt, vàng lá...) theo thời gian thực. 
-# Smart Crop Doctor (SmartCropDoctor-Android)
+# Ứng Dụng Phân Tích Hình Ảng Chuẩn Đoán Bệnh Cây Trồng Bằng AI (SmartCropDoctor-Android)
 
 <p align="center">
   <img src="https://img.shields.io/badge/Platform-Android-green.svg?style=for-the-badge&logo=android" alt="Platform">
