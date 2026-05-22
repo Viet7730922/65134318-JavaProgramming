@@ -13,17 +13,6 @@
 Tất cả đều được code trên Eclipse IDE.</br>
 Với Java Development Kit 21.0.5 (https://download.oracle.com/java/21/archive/jdk-21.0.5_windows-x64_bin.exe)
 
-# Smart Crop Doctor (SmartCropDoctor-Android)
-
-<p align="center">
-  <img src="https://img.shields.io/badge/Platform-Android-green.svg?style=for-the-badge&logo=android" alt="Platform">
-  <img src="https://img.shields.io/badge/Language-Java%20-blue.svg?style=for-the-badge" alt="Language">
-  <img src="https://img.shields.io/badge/AI%2FML-TensorFlow%20Lite-orange.svg?style=for-the-badge&logo=tensorflow" alt="AI/ML">
-</p>
-<p align="center">
-  <img src="https://img.shields.io/badge/Backend-Firebase-yellow.svg?style=for-the-badge&logo=firebase" alt="Backend">
-  <img src="https://img.shields.io/badge/License-MIT-purple.svg?style=for-the-badge" alt="License">
-</p>
 
 # Smart Crop Doctor (SmartCropDoctor-Android)
 
