@@ -19,32 +19,33 @@ Phân loại: **DEFECT** (chắc chắn gây sai/dừng chương trình) · **SM
 
 | STT | Dòng | Rule | Vấn đề (giải thích bằng lời của bạn) | Hậu quả nếu chạy chương trình | Phân loại | Cách sửa |
 |---|---|---|---|---|---|---|
-| 1 | 9 | `no-unused-vars` | Khai báo thư viện `fs` nhưng không sử dụng ở bất kỳ đâu trong file. | Tốn bộ nhớ nạp module thừa, code rác gây khó hiểu. | SMELL | Xóa dòng `const fs = require('fs');`. |
-| 2 | 14 | `no-dupe-keys` | Khóa `noiThanh` bị khai báo lặp lại 2 lần trong object `SHIPPING_CONFIG`. | Giá trị `noiThanh: 25000` bị ghi đè lên `20000`, làm sai lệch giá trị phí nội thành ban đầu. | DEFECT | Xóa dòng `noiThanh: 25000,` thừa ở dòng 14. |
-| 3 | 22 | `no-undef` | Biến `totl` trả về chưa được khai báo (gõ sai chính tả của `total`). | Chương trình văng lỗi `ReferenceError: totl is not defined` và dừng đột ngột khi gọi hàm. | DEFECT | Đổi `return totl;` thành `return total;`. |
-| 4 | 27 | `eqeqeq` | Dùng toán tử so sánh lỏng lẻo `==` thay vì so sánh nghiêm ngặt `===`. | Có thể xảy ra ép kiểu ngầm định ngoài ý muốn. | SMELL | Đổi thành `if (qty === 0 \|\| qty === '0')` hoặc ép sang số nguyên trước khi so sánh `===`. |
-| 5 | 30 | `no-cond-assign` | Dùng phép gán `=` thay vì toán tử so sánh `===` trong biểu thức điều kiện `if`. | Biến `qty` luôn bị gán lại thành `100` (luôn `truthy`), hàm luôn trả về `false` với mọi số lượng. | DEFECT | Sửa `if (qty = 100)` thành `if (qty === 100)` (hoặc sửa logic kiểm tra khoảng 1–99: `if (qty < 1 \|\| qty > 99)`). |
-| 6 | 38 | `valid-typeof` | So sánh `typeof price === 'numbr'` bị gõ sai tên kiểu dữ liệu (`'numbr'` thay vì `'number'`). | Biểu thức luôn trả về `false`, bỏ qua bước kiểm tra kiểu dữ liệu của biến. | DEFECT | Sửa `'numbr'` thành `'number'` (hoặc `typeof price !== 'number'`). |
-| 7 | 41 | `use-isnan` | So sánh trực tiếp biến với `NaN` bằng `price === NaN`. | Trong JavaScript, `NaN === NaN` luôn là `false`, khiến lệnh kiểm tra bị vô hiệu hóa hoàn toàn. | DEFECT | Đổi thành `if (Number.isNaN(price))`. |
-| 8 | 51 | `no-fallthrough` | Thiếu lệnh `break;` ở nhánh `case 'noi-thanh':`. | Luồng thực thi bị rơi xuống nhánh tiếp theo, biến `fee` luôn nhận giá trị của `ngoaiThanh` dù đầu vào là nội thành. | DEFECT | Thêm `break;` ngay sau dòng `fee = SHIPPING_CONFIG.noiThanh;`. |
-| 9 | 65 | `no-dupe-else-if` | Điều kiện `customer.type === 'VIP'` bị lặp lại ở cả nhánh `if` và `else if`. | Khối lệnh trong nhánh `else if` không bao giờ được thực thi (Dead code). | DEFECT | Sửa nhánh `else if` thành loại khách hàng phù hợp hoặc xóa nếu trùng lặp. |
-| 10 | 69 | `no-unreachable` | Lệnh `console.log(...)` nằm ngay sau câu lệnh `return 0;`. | Dòng lệnh này không bao giờ được chạm tới và thực thi (Dead code). | SMELL | Chuyển `console.log` lên trước câu lệnh `return` hoặc xóa bỏ. |
-| 11 | 74 | `no-unsafe-negation` | Toán tử phủ định `!` đặt trước toán tử `in` (`!productId in cart`). | Do thứ tự ưu tiên, JS đánh giá `(!productId) in cart` dẫn đến kết quả logic sai hoàn toàn. | DEFECT | Thêm ngoặc tròn bao quanh: `if (!(productId in cart))`. |
-| 12 | 83 | `no-empty` | Khối lệnh `catch (e)` để trống, không xử lý lỗi. | Nuốt lỗi âm thầm (swallow error), gây khó khăn khi debug nếu chuỗi JSON không hợp lệ. | SMELL | Ghi log lỗi `console.error(e)` hoặc xử lý trả về `null`. |
-| 13 | 83 | `no-unused-vars` | Biến `e` trong mệnh đề `catch (e)` được khai báo nhưng không dùng. | Biến thừa trong mã nguồn. | SMELL | Sử dụng `e` để log hoặc dùng cú pháp Optional Catch Binding: `catch { ... }`. |
-| 14 | 114 | `no-unused-vars` | Tham số `kyHieu` trong hàm `dinhDangTien` được khai báo nhưng không dùng. | Tạo kỳ vọng sai cho người gọi hàm rằng có thể tùy biến ký hiệu tiền tệ. | SMELL | Sử dụng tham số `kyHieu` thay vì hardcode `'đ'`, hoặc xóa tham số thừa nếu không cần. |
-| 15 | 10-14 | `prefer-const` / `quotes` | Sử dụng nháy đơn/nháy kép không nhất quán hoặc khai báo biến có thể dùng `const`. | Ảnh hưởng tính đồng nhất của phong cách viết mã (code styling). | SMELL | Chuẩn hóa theo cấu hình style guide quy định. |
-| 16 | 20 | `semi` / formatting | Thiếu dấu chấm phẩy hoặc khoảng trắng không đúng chuẩn linter. | Gây cảnh báo style format mã nguồn. | SMELL | Thêm dấu chấm phẩy đầy đủ theo quy định của dự án. |
-| 17 | 49 | `default-case` | Cấu trúc `switch` thiếu nhánh `default` để bắt các trường hợp khu vực không hợp lệ. | Khi truyền `zone` sai, `fee` vẫn giữ nguyên giá trị 0 mà không có cảnh báo. | SMELL | Bổ sung nhánh `default: break;` hoặc ném ngoại lệ khi `zone` không hợp lệ. |
-| 18 | 90 | `complexity` / `max-depth` | Các khối `if-else` lồng nhau quá sâu trong hàm `xepHangKhachHang`. | Làm tăng độ phức tạp thuật toán (Cyclomatic Complexity), mã khó đọc và khó viết unit test. | SMELL | Tách nhỏ hàm hoặc sử dụng guard clauses để return sớm. |
-| 19 | 108 | `no-unused-vars` / `no-console` | Lệnh `console.log` được dùng trong hàm tính toán nghiệp vụ `tinhTongDon`. | Ô nhiễm output terminal khi chạy production/test. | SMELL | Xóa bỏ dòng `console.log` phục vụ debug. |
+| 1 | 9:7 | `no-unused-vars` | Module `fs` được import nhưng không dùng ở đâu trong file. | Tốn bộ nhớ nạp module thừa, mã nguồn dư thừa gây rối. | SMELL | Xóa dòng `const fs = require('fs');`. |
+| 2 | 14:3 | `no-dupe-keys` | Khóa `noiThanh` bị khai báo lặp lại 2 lần trong object `SHIPPING_CONFIG`. | Giá trị `noiThanh: 25000` ở dòng 14 sẽ ghi đè lên `20000`, làm sai phí vận chuyển nội thành. | DEFECT | Xóa dòng `noiThanh: 25000,` thừa ở dòng 14. |
+| 3 | 21:5 | `no-unused-vars` | Biến `total` được tính toán nhưng không sử dụng (do lệnh return gõ sai tên). | Tốn tài nguyên tính toán vô ích nếu không trả về giá trị này. | SMELL | Sửa lệnh return ở dòng 23 để sử dụng biến `total`. |
+| 4 | 23:10 | `no-undef` | Biến `totl` chưa từng được khai báo (gõ sai chính tả của `total`). Cùng nguyên nhân với dòng 21:5. | Chương trình văng lỗi crash ngay lập tức: `ReferenceError: totl is not defined`. | DEFECT | Sửa `return totl;` thành `return total;`. |
+| 5 | 28:11 | `eqeqeq` | Dùng toán tử so sánh lỏng lẻo `==` thay vì so sánh nghiêm ngặt `===`. | Dễ xảy ra ép kiểu ngầm định ngoài kiểm soát (ví dụ `'0' == 0` trả về true). | SMELL | Ép kiểu sang số nguyên và kiểm tra bằng toán tử nghiêm ngặt `===`. |
+| 6 | 31:7 | `no-cond-assign` | Dùng phép gán `=` thay vì so sánh trong biểu thức điều kiện `if`. | Gán đè biến `qty` thành 100 thay vì kiểm tra giá trị, làm sai lệch dữ liệu biến truyền vào. | DEFECT | Sửa logic kiểm tra khoảng hợp lệ: `if (num < 1 \|\| num > 99)`. |
+| 7 | 31:7 | `no-constant-condition` | Biểu thức gán `qty = 100` luôn trả về 100 (luôn truthy). Cùng nguyên nhân với dòng 31:7 ở trên. | Khối `if` luôn luôn chạy, hàm luôn trả về `false` với mọi giá trị đầu vào. | DEFECT | Thay bằng biểu thức điều kiện so sánh giá trị biên hợp lệ. |
+| 8 | 39:24 | `valid-typeof` | So sánh `typeof price === 'numbr'` bị gõ sai tên kiểu dữ liệu (`'numbr'` thay vì `'number'`). | Biểu thức luôn trả về `false`, bỏ qua hoàn toàn bước kiểm tra kiểu dữ liệu số. | DEFECT | Sửa thành `typeof price !== 'number'`. |
+| 9 | 42:7 | `use-isnan` | So sánh biến trực tiếp với `NaN` bằng toán tử `===` (`price === NaN`). | Trong JS, `NaN === NaN` luôn là `false`, khiến điều kiện không bao giờ bắt được `NaN`. | DEFECT | Đổi thành hàm kiểm tra chuẩn: `Number.isNaN(price)`. |
+| 10 | 54:5 | `no-fallthrough` | Thiếu câu lệnh ngắt `break;` ở cuối nhánh `case 'noi-thanh':`. | Luồng xử lý bị rơi thẳng xuống nhánh ngoại thành, biến `fee` luôn bị gán lại bằng phí ngoại thành. | DEFECT | Bổ sung lệnh `break;` ngay sau dòng gán phí nội thành. |
+| 11 | 68:14 | `no-dupe-else-if` | Điều kiện `customer.type === 'VIP'` ở nhánh `else if` trùng lặp hoàn toàn với nhánh `if`. | Khối lệnh bên trong nhánh `else if` không bao giờ được chạm tới (dead code). | DEFECT | Xóa bỏ nhánh `else if` trùng lặp điều kiện. |
+| 12 | 72:3 | `no-unreachable` | Câu lệnh `console.log(...)` nằm ngay sau câu lệnh `return 0;`. | Dòng code này không bao giờ được chạm tới và thực thi trong hàm. | SMELL | Xóa bỏ lệnh `console.log` thừa sau câu lệnh return. |
+| 13 | 72:3 | `no-console` | Sử dụng lệnh `console.log` trong hàm tính toán `tinhGiamGia`. Cùng vị trí với dòng 72:3 ở trên. | Gây ô nhiễm luồng xuất terminal khi triển khai hệ thống hoặc chạy kiểm thử. | SMELL | Xóa bỏ lệnh `console.log` debug này. |
+| 14 | 77:7 | `no-unsafe-negation` | Đặt dấu phủ định `!` đứng trước toán tử `in` (`!productId in cart`). | Do thứ tự ưu tiên, JS tính `(!productId) in cart`, dẫn đến sai hoàn toàn kết quả logic. | DEFECT | Đặt ngoặc đơn để phủ định cả biểu thức: `!(productId in cart)`. |
+| 15 | 87:12 | `no-unused-vars` | Tham số ngoại lệ `e` trong mệnh đề `catch (e)` được khai báo nhưng không dùng. | Khai báo biến thừa không sử dụng trong mã nguồn. | SMELL | Sử dụng cú pháp Optional Catch Binding: `catch { return null; }`. |
+| 16 | 87:15 | `no-empty` | Khối lệnh `catch` để trống không xử lý lỗi. Cùng nguyên nhân với dòng 87:12 ở trên. | Nuốt lỗi âm thầm (swallow error), gây khó khăn khi debug nếu chuỗi JSON không hợp lệ. | SMELL | Xử lý trả về giá trị an toàn: `return null;`. |
+| 17 | 92:1 | `complexity` | Hàm `xepHangKhachHang` có độ phức tạp xoay vòng (complexity) là 9, vượt ngưỡng cho phép (5). | Hàm có nhiều nhánh rẽ lồng nhau, khó đọc, khó bảo trì và dễ sót trường hợp khi kiểm thử. | SMELL | Tách các nhánh xét mức chi tiêu thành 2 hàm con bổ trợ (`xepHangTren10Trieu`, `xepHangTren5Trieu`) để đưa complexity về mức cho phép. |
+| 18 | 116:3 | `no-console` | Sử dụng lệnh `console.log` trong hàm tính tiền `tinhTongDon`. | Gây ô nhiễm màn hình terminal và làm giảm hiệu năng hệ thống. | SMELL | Xóa bỏ dòng `console.log` debug này. |
+| 19 | 121:31 | `no-unused-vars` | Tham số `kyHieu` được khai báo trong hàm `dinhDangTien` nhưng không được dùng. | Tạo kỳ vọng sai rằng hàm có thể tùy biến ký hiệu tiền tệ, gây hiểu lầm cho người gọi hàm. | SMELL | Xóa bỏ tham số `kyHieu` không sử dụng khỏi khai báo hàm `dinhDangTien(amount)`. |
 
 ## 3. Sau khi sửa
 
 Kết quả `npm run lint:lab` sau khi sửa (ảnh chụp hoặc dán kết quả):
 
 ```
-
+> minishop-ntu@1.0.0 lint:lab
+> eslint src/lab-static
 ```
 
 ## 4. Lỗi logic ESLint không phát hiện được
