@@ -16,8 +16,11 @@
 
 Ảnh chụp màn hình (chèn ảnh hoặc đặt file ảnh trong thư mục `bai-nop/hinh/` rồi dẫn link):
 
+![Server Minishop-ntu-2](hinh/65134318-server.png)
+
 - Trang web MiniShop NTU: http://localhost:3000
 - Terminal đang chạy server: CMD (C:\Users\ASUS\sot357-65134318)
+- Đường dẫn ảnh chụp màn hình: bai-nop/hinh/65134318-server.png
 
 ## 2. Kịch bản 1 – Đăng ký với tuổi 17
 
@@ -26,7 +29,7 @@
 | Kết quả thực tế | Đăng ký thành công |
 | Kết quả mong đợi (theo SRS, ghi rõ mục) | FR-01.3 |
 | Có phải failure không? Vì sao? | Phải đó là failure. Vì kết quả thực tế (hệ thống cho phép đăng ký) sai lệch so với kết quả kỳ vọng/đặc tả yêu cầu (chặn người dùng dưới 18 tuổi). |
-| Defect nằm ở đâu (file, số dòng, đoạn mã) | file registration.js, dòng 20 , đoạn mã: } else if (ageNumber < 17 || ageNumber > 100) { |
+| Defect nằm ở đâu (file, số dòng, đoạn mã) | file registration.js, dòng 20 , đoạn mã: else if (ageNumber < 17 || ageNumber > 100) |
 | Error nào của con người có thể đã gây ra defect này? | Lỗi nhầm lẫn điều kiện biên (Off-by-one Error) hoặc hiểu sai yêu cầu nghiệp vụ: Lập trình viên nhầm lẫn giữa "trên 17 tuổi" (> 17 tức là >= 18) với việc chặn người dùng bằng điều kiện < 17 thay vì < 18 (hoặc sơ suất gõ nhầm số 17 thay cho số 18 khi viết mã) |
 
 ## 3. Kịch bản 2 – Đơn hàng 500.000đ, nội thành
