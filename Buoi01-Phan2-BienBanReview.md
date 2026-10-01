@@ -8,11 +8,11 @@
 | MSSV | 65134318 |
 | Tài liệu được review | MSN-SRS – Đặc tả yêu cầu MiniShop NTU, phiên bản 1.0 |
 | Loại review | Review theo checklist (cá nhân) |
-| Ngày | 27/09/2026 |
-| Bước 1 – Khởi động | từ …… đến …… |
-| Bước 2 – Đọc lần 1 (theo trình tự) | từ …… đến …… |
-| Bước 3 – Đọc lần 2 (đối chiếu chéo) | từ …… đến …… |
-| Bước 4 – Hoàn thiện biên bản | từ …… đến …… |
+| Ngày | 29/09/2026 |
+| Bước 1 – Khởi động | từ 14h đến 14h05 |
+| Bước 2 – Đọc lần 1 (theo trình tự) | từ 14h05 đến 14h35  |
+| Bước 3 – Đọc lần 2 (đối chiếu chéo) | từ 14h35 đến 15h00 |
+| Bước 4 – Hoàn thiện biên bản | từ 15h00 đến 15h20 |
 
 ## Danh sách lỗi
 
@@ -63,7 +63,7 @@ Mức độ: Major · Minor
 - [ ] **Chấp nhận có điều kiện** – dùng được sau khi sửa các lỗi đã nêu, không cần review lại
 - [x] **Review lại** – phải sửa và tổ chức review lần 2
 
-Lý do: Lý do: Tài liệu phiên bản 1.0 có quá nhiều lỗi nghiêm trọng (7 lỗi Major), đặc biệt là xung đột mâu thuẫn trực tiếp giữa các yêu cầu chức năng (FR-01.3 vs Mục 2.2, FR-02.3 vs NFR-03, FR-04.1/FR-04.2 vs Phụ lục A). Những mâu thuẫn này dẫn đến việc lập trình viên triển khai sai logic và kiểm thử viên không có cơ sở xác định đúng/sai.
+Lý do: Tài liệu phiên bản 1.0 có quá nhiều lỗi nghiêm trọng (7 lỗi Major), đặc biệt là xung đột mâu thuẫn trực tiếp giữa các yêu cầu chức năng (FR-01.3 vs Mục 2.2, FR-02.3 vs NFR-03, FR-04.1/FR-04.2 vs Phụ lục A). Những mâu thuẫn này dẫn đến việc lập trình viên triển khai sai logic và kiểm thử viên không có cơ sở xác định đúng/sai.
 
 ## Tự đánh giá (3–5 câu)
 
